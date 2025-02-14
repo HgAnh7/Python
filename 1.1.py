@@ -4,6 +4,7 @@ import json
 import sys
 import random
 import string
+import os
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 import threading
@@ -39,6 +40,28 @@ formatted_device_id = format_device_id(random_id)
 
 
 #//////////////////////////
+
+banner = """
+\033[37m⣇⣿⠘⣿⣿⣿⡿⡿⣟⣟⢟⢟⢝⠵⡝⣿⡿⢂⣼⣿⣷⣌⠩⡫⡻⣝⠹⢿⣿⣷\033[0m
+\033[37m⡆⣿⣆⠱⣝⡵⣝⢅⠙⣿⢕⢕⢕⢕⢝⣥⢒⠅⣿⣿⣿⡿⣳⣌⠪⡪⣡⢑⢝⣇\033[0m
+\033[37m⡆⣿⣿⣦⠹⣳⣳⣕⢅⠈⢗⢕⢕⢕⢕⢕⢈⢆⠟⠋⠉⠁⠉⠉⠁⠈⠼⢐⢕⢽\033[0m
+\033[37m⡗⢰⣶⣶⣦⣝⢝⢕⢕⠅⡆⢕⢕⢕⢕⢕⣴⠏⣠⡶⠛⡉⡉⡛⢶⣦⡀⠐⣕⢕\033[0m
+\033[37m⡝⡄⢻⢟⣿⣿⣷⣕⣕⣅⣿⣔⣕⣵⣵⣿⣿⢠⣿⢠⣮⡈⣌⠨⠅⠹⣷⡀⢱⢕\033[0m
+\033[37m⡝⡵⠟⠈⢀⣀⣀⡀⠉⢿⣿⣿⣿⣿⣿⣿⣿⣼⣿⢈⡋⠴⢿⡟⣡⡇⣿⡇⡀⢕\033[0m
+\033[37m⡝⠁⣠⣾⠟⡉⡉⡉⠻⣦⣻⣿⣿⣿⣿⣿⣿⣿⣿⣧⠸⣿⣦⣥⣿⡇⡿⣰⢗⢄\033[0m
+\033[37m⠁⢰⣿⡏⣴⣌⠈⣌⠡⠈⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣬⣉⣉⣁⣄⢖⢕⢕⢕\033[0m
+\033[37m⡀⢻⣿⡇⢙⠁⠴⢿⡟⣡⡆⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣵⣵⣿\033[0m
+\033[37m⡻⣄⣻⣿⣌⠘⢿⣷⣥⣿⠇⣿⣿⣿⣿⣿⣿⠛⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿\033[0m
+\033[37m⣷⢄⠻⣿⣟⠿⠦⠍⠉⣡⣾⣿⣿⣿⣿⣿⣿⢸⣿⣦⠙⣿⣿⣿⣿⣿⣿⣿⣿⠟\033[0m
+\033[37m⡕⡑⣑⣈⣻⢗⢟⢞⢝⣻⣿⣿⣿⣿⣿⣿⣿⠸⣿⠿⠃⣿⣿⣿⣿⣿⣿⡿⠁⣠\033[0m
+\033[37m⡝⡵⡈⢟⢕⢕⢕⢕⣵⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣶⣿⣿⣿⣿⣿⠿⠋⣀⣈⠙\033[0m
+\033[37m⡝⡵⡕⡀⠑⠳⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⢉⡠⡲⡫⡪⡪⡣\033[0m
+\033[31m╔═════════════════════╗\033[0m
+\033[31m║\033[0m ▶ \033[94mTelegram\033[0m: \033[37mHgAnh_7\033[0m                                
+\033[31m╚═════════════════════╝\033[0m
+"""
+os.system('cls' if os.name == 'nt' else 'clear')
+print(banner)
 
 def send_otp_via_sapo(sdt):
     cookies = {
@@ -3375,8 +3398,11 @@ def send_otp_with_delay(func, phone, delay):
     func(phone)
 
 # Yêu cầu người dùng nhập số điện thoại
-phone = input("Nhập số điện thoại: ")
-delay = float(input("Nhập độ trễ (giây) giữa các lần gửi tin nhắn (đặt 0 để chạy đồng thời): "))
+phone = input("\033[32m ▶ Nhập số điện thoại:\033[0m ")
+if phone == "0326064605":
+    print("\033[32m ▶ Số Vip không thể spam\033[0m")
+    exit()
+delay = float(input("\033[32m ▶ Nhập độ trễ (giây) giữa các lần gửi tin nhắn (đặt 0 để chạy đồng thời):\033[0m "))
 
 # Tạo danh sách các hàm OTP
 otp_functions = [
