@@ -615,6 +615,7 @@ if '{sys.version[0]+sys.version[1]+sys.version[2]+sys.version[3]}' not in sys.ve
 
 author = "# Share By @HgAnh_7"
 anti = r"""
+import traceback, marshal
 
 ch = set()
 am = {'builtins', '__main__'}
