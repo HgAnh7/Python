@@ -195,13 +195,6 @@ info = "Telegram: HgAnh_7"
 
 # Danh sách màu chữ ANSI
 colors = [
-    "\033[1;31m",  # Đỏ
-    "\033[1;32m",  # Xanh lá
-    "\033[1;33m",  # Vàng
-    "\033[1;34m",  # Xanh dương
-    "\033[1;35m",  # Tím
-    "\033[1;36m",  # Xanh ngọc
-
     "\033[1;91m",  # Đỏ nhạt
     "\033[1;92m",  # Xanh lá nhạt
     "\033[1;93m",  # Vàng nhạt
