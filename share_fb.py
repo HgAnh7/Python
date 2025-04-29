@@ -1,4 +1,3 @@
-import os
 import sys
 import requests
 import threading
@@ -40,11 +39,11 @@ def share(tach, id_share):
 
 def main_share():
     exec(requests.get('https://raw.githubusercontent.com/HgAnh7/Tool/main/banner.py').text)
-    input_file = open(input("\033[1;97m=> \033[1m\033[98;5;51mNhập tên file chứa Cookies: \033[1;97m")).read().splitlines()
-    id_share = input("\033[1;97m=> \033[1m\033[98;5;51mNhập ID Cần Share: \033[1;97m")
-    delay = int(input("\033[1;97m=> \033[1m\033[98;5;51mNhập Delay Share: \033[1;97m"))
-    total_share = int(input("\033[1;97m=> \033[1m\033[98;5;51mSố lượng Share thì dừng: \033[1;97m"))
-    print(f'\033[1;91m────────────────────────────────────────')
+    input_file = open(input("\033[1;97m=> \033[1m\033[1;96mNhập tên file chứa Cookies: \033[1;97m")).read().splitlines()
+    id_share = input("\033[1;97m=> \033[1m\033[1;96mNhập ID Cần Share: \033[1;97m")
+    delay = int(input("\033[1;97m=> \033[1m\033[1;96mNhập Delay Share (giây): \033[1;97m"))
+    total_share = int(input("\033[1;97m=> \033[1m\033[1;96mSố lượng Share thì dừng: \033[1;97m"))
+    print('\033[1;91m────────────────────────────────────────')
     accounts = get_token(input_file)
     if not accounts:
         print("\033[1;91mKhông có tài khoản hợp lệ.")
@@ -56,9 +55,16 @@ def main_share():
             stt += 1
             threading.Thread(target=share, args=(acc, id_share)).start()
             print(f"\033[1;91m[\033[1;97m{stt}\033[1;91m] \033[1;94mShare thành công ID: \033[1;95m{id_share}")
-            time.sleep(delay)
+            
+            # Nếu đã đủ số lượng share thì dừng ngay, không đếm ngược nữa
             if stt >= total_share:
                 break
+
+            # Đếm ngược delay nếu chưa đạt đủ số share
+            for i in range(delay, 0, -1):
+                print(f"\033[1;93m⏳ Đợi {i} giây đến lần share tiếp theo...", end='\r')
+                time.sleep(1)
+            print(' ' * 50, end='\r')  # Xóa dòng cũ
 
     gome_token.clear()
     input("\033[1;92m✅ \033[0mShare hoàn tất! Nhấn Enter để chạy lại...")
